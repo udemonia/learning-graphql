@@ -2,6 +2,7 @@
 //? As well as the relationship between types
 
 const graphql = require('graphql');
+const _ = require('lodash');
 
 // destructure 
 const {
@@ -10,6 +11,20 @@ const {
     GraphQLString
 } = graphql
 
+
+//? temp... HARD CODED....
+const users = [
+    {
+        id: '23',
+        firstName: "Brandon",
+        age: 38
+    },
+    {
+        id: '47',
+        firstName: 'Kal',
+        age: 6
+    }
+]
 
 //* this reminds me of Mongoose schemas - 
         //!  if it was typed
@@ -41,7 +56,7 @@ const RootQuery = new GraphQLObjectType({
             //! ParentValue - not really used ever
             //! args is the object that gets called with the args in the query...
             resolve(parentValue, args) {
-
+                return _.find(users, { id: args.id })
             }
         }
     }
